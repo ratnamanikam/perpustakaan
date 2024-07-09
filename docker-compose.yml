@@ -1,0 +1,24 @@
+services:
+
+  perpustakaan:
+    container_name: perpustakaan
+    build: .
+    volumes:
+      - ./uas-sister:/var/www/html
+    ports:
+      - 9000:80
+  
+  mysql_db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db_perpustakaan
+    ports:
+    - 3307:3306
+  
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 9002:80
+    environment:
+      - PMA_ARBITRARY=1 
